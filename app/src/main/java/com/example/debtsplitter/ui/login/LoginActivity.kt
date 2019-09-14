@@ -22,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
 
     //class Pattern
 
+
     private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
