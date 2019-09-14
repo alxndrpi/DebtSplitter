@@ -1,6 +1,7 @@
 package com.example.debtsplitter.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -16,6 +17,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 
 import com.example.debtsplitter.R
+import com.example.debtsplitter.Activity_login2
 
 class LoginActivity : AppCompatActivity() {
 
@@ -41,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
         // TODO : send tel to generate password, and wait while user input password in to passText
 
 
-        val password = findViewById<EditText>(R.id.password)
+        //val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
@@ -57,9 +59,9 @@ class LoginActivity : AppCompatActivity() {
             if (loginState.usernameError != null) {
                 username.error = getString(loginState.usernameError)
             }
-            if (loginState.passwordError != null) {
-                password.error = getString(loginState.passwordError)
-            }
+            //if (loginState.passwordError != null) {
+            //    password.error = getString(loginState.passwordError)
+            //}
         })
 
         loginViewModel.loginResult.observe(this@LoginActivity, Observer {
@@ -71,6 +73,7 @@ class LoginActivity : AppCompatActivity() {
             }
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
+                openInputActivity()
             }
             setResult(Activity.RESULT_OK)
 
@@ -79,26 +82,26 @@ class LoginActivity : AppCompatActivity() {
         })
 
         username.afterTextChanged {
-            loginViewModel.loginDataChanged(
-                username.text.toString(),
-                password.text.toString()
+            loginViewModel.loginDataChanged2(
+                username.text.toString()
+                //password.text.toString()
             )
         }
 
-        password.apply {
+        username.apply {
             afterTextChanged {
-                loginViewModel.loginDataChanged(
-                    username.text.toString(),
-                    password.text.toString()
+                loginViewModel.loginDataChanged2(
+                    username.text.toString()
+                    //password.text.toString()
                 )
             }
 
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
-                        loginViewModel.login(
-                            username.text.toString(),
-                            password.text.toString()
+                        loginViewModel.login2(
+                            username.text.toString()
+                            //password.text.toString()
                         )
                 }
                 false
@@ -106,9 +109,22 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
+                loginViewModel.login2(username.text.toString())
             }
         }
+
+
+    }
+
+
+
+
+
+
+    private fun openInputActivity() {
+        val intent = Intent(this, Activity_login2::class.java)
+
+        startActivity(intent)
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {
