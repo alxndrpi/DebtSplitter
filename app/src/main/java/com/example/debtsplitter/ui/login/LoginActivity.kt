@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
         val username = findViewById<EditText>(R.id.tel)
 
+
         //val reg = "^(\\+91[\\-\\s]?)?[0]?(91)?[789]\\d{9}\$"
         //var pattern: Pattern = Pattern.compile(reg)
         //fun CharSequence.isPhoneNumber() : Boolean = pattern.matcher(this).find()
