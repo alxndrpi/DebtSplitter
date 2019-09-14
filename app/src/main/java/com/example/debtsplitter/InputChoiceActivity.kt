@@ -1,24 +1,22 @@
 package com.example.debtsplitter
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_input_choice.*
+import kotlinx.android.synthetic.main.content_input_choice.*
 
-class MainActivity : AppCompatActivity() {
+class InputChoiceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_input_choice)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        scanQRButton.setOnClickListener { Log.i("scanQRButton", scanQRButton.text.toString()) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

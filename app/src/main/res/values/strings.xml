@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Debt Splitter</string>
     <string name="action_settings">Settings</string>
+    <string name="scanQR">Отсканировать QR-код</string>
+    <string name="manualInput">Ввести всё вручную</string>
+    <string name="nav_friends">Друзья</string>
+    <string name="nav_events">Мероприятия</string>
+    <string name="nav_settings">Настройки</string>
 </resources>
