@@ -1,6 +1,8 @@
 package com.example.debtsplitter
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.ArrayMap
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.ActionBar
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,5 +22,14 @@ class InputChoiceActivity : AppCompatActivity() {
 
         val bottomNavigation: BottomNavigationView = navigationView
         bottomNavigation.setOnNavigationItemSelectedListener(::navigationListener)
+
+        manualInputButton.setOnClickListener{
+            val data = "sada"
+            val intent = Intent(this, ReceiptActivity::class.java)
+            intent.putExtra("check_data", data)
+            startActivity(intent)
+        }
+
+
     }
 }
