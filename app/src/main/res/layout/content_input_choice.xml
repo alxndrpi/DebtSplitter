@@ -14,31 +14,37 @@
         android:layout_height="53dp"
         android:layout_marginTop="40dp"
         android:gravity="center_horizontal|center_vertical"
+        android:text="@string/input_activity_title"
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/input_activity_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
+    <Button
         android:id="@+id/scanQRButton"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="280dp"
         android:layout_height="200dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/input_button_background"
+        android:drawableTop="@drawable/scan_qr"
+        android:paddingTop="30dp"
+        android:text="@string/scan_qr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputActivityTitle"
-        app:srcCompat="@drawable/scan_qr" />
+        app:layout_constraintTop_toBottomOf="@+id/inputActivityTitle" />
 
     <Button
         android:id="@+id/manualInputButton"
         android:layout_width="280dp"
         android:layout_height="200dp"
         android:layout_marginTop="276dp"
+        android:background="@drawable/input_button_background"
         android:drawableTop="@drawable/manual_input"
-        android:drawable_top="@drawable/manual_input"
+        android:paddingTop="30dp"
+        android:text="@string/manual_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
