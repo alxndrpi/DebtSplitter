@@ -19,6 +19,9 @@ import com.example.debtsplitter.R
 
 class LoginActivity : AppCompatActivity() {
 
+
+    //class Pattern
+
     private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +30,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val username = findViewById<EditText>(R.id.tel)
+
+        //val reg = "^(\\+91[\\-\\s]?)?[0]?(91)?[789]\\d{9}\$"
+        //var pattern: Pattern = Pattern.compile(reg)
+        //fun CharSequence.isPhoneNumber() : Boolean = pattern.matcher(this).find()
+
 
         // TODO : send tel to generate password, and wait while user input password in to passText
 
