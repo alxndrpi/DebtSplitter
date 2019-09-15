@@ -42,53 +42,13 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val username = findViewById<EditText>(R.id.tel)
-        val textView5 = findViewById<EditText>(R.id.textView5)
+        //val textView5 = findViewById<EditText>(R.id.textView5)
 
         //val reg = "^(\\+91[\\-\\s]?)?[0]?(91)?[789]\\d{9}\$"
         //var pattern: Pattern = Pattern.compile(reg)
         //fun CharSequence.isPhoneNumber() : Boolean = pattern.matcher(this).find()
 
         // TODO : send tel to generate password, and wait while user input password in to passText
-
-        val queue = Volley.newRequestQueue(this)
-        val url = "https://reqres.in/api/login"
-
-        val req = object : JsonObjectRequest(Request.Method.POST, url, null,
-            Response.Listener {
-                Toast.makeText(this,"My_token=${it.getString("token")}",Toast.LENGTH_LONG).show()
-            },
-            Response.ErrorListener {
-
-                Toast.makeText(this,"Error=${it.message}",Toast.LENGTH_LONG).show()
-
-            }
-        ) {
-            override fun getBody(): ByteArray {
-                val my_post_string="{\n" +
-                        "    \"email\": \"eve.holt@reqres.in\",\n" +
-                        "    \"password\": \"cityslicka\"\n" +
-                        "}"
-                return my_post_string.toByteArray()
-            }
-
-        }
-        // Add the request to the RequestQueue.
-                queue.add(req)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         //val password = findViewById<EditText>(R.id.password)
         val login = findViewById<Button>(R.id.login)
@@ -156,6 +116,8 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
+                requestFun(username.text.toString())
+                Thread.sleep(20_000)
                 loginViewModel.login2(username.text.toString())
             }
         }
@@ -163,9 +125,33 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    private fun requestFun(username_ : String) {
+        val queue = Volley.newRequestQueue(this)
+        val url = "http://82.146.39.239:8000/users/"
 
+        val req = object : JsonObjectRequest(Request.Method.POST, url, null,
+            Response.Listener {
+                Toast.makeText(this, "My_token=${it.getString("token")}", Toast.LENGTH_LONG)
+                    .show()
+            },
+            Response.ErrorListener {
 
+                Toast.makeText(this, "Error=${it.message}", Toast.LENGTH_LONG).show()
 
+            }
+        ) {
+            override fun getBody(): ByteArray {
+                val my_post_string = "{\n" +
+                        "    \"username\":  \"" + username_ + "\",\n" +
+
+                        "}"
+                return my_post_string.toByteArray()
+            }
+
+        }
+        // Add the request to the RequestQueue.
+        queue.add(req)
+    }
 
 
     private fun openInputActivity() {
