@@ -1,0 +1,31 @@
+{
+  "document": {
+    "receipt": {
+      "nds0": 50000,
+      "kktRegId": "0003954582027903    ",
+      "operationType": 1,
+      "items": [
+        {
+          "sum": 50000,
+          "quantity": 2,
+          "price": 25000,
+          "name": "ГИРОС КУРИЦА"
+        }
+      ],
+      "totalSum": 50000,
+      "dateTime": "2019-09-06T20:35:00",
+      "rawData": "AwDfABEEEAA5Mjg3NDQwMzAwMTAwMTcyDQQUADAwMDM5NTQ1ODIwMjc5MDMgICAg+gMMADUwMDQwNDQzODgyMBAEBAC4AQAA9AMEAPTCcl01BAYAMQSVfkUVDgQEAAoAAAASBAQAKQAAAB4EAQAB\/AMCAFDDIwQ2AAYEDACDiJCOkSCKk5CIloA3BAIAqGH\/AwIAAAITBAIAUMOvBAEABa4EAQAAvAQBAAG+BAEABAcEAgBQwzkEAQAAvwQBAADABAEAAMEEAQAA\/QMGAIKoquKu4B8EAQAguQQBAAJQBAIAUMM=",
+      "userInn": "500404438820",
+      "fiscalSign": 2508080405,
+      "receiptCode": 3,
+      "cashTotalSum": 50000,
+      "shiftNumber": 10,
+      "ecashTotalSum": 0,
+      "fiscalDriveNumber": "9287440300100172",
+      "fiscalDocumentNumber": 440,
+      "operator": "Виктор",
+      "taxationType": 32,
+      "requestNumber": 41
+    }
+  }
+}
