@@ -15,6 +15,16 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.Volley
+import com.android.volley.toolbox.JsonRequest
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
+import org.json.JSONArray
+import org.json.JSONObject
+
+
 
 import com.example.debtsplitter.R
 import com.example.debtsplitter.Activity_login2
@@ -26,21 +36,58 @@ class LoginActivity : AppCompatActivity() {
 
 
     private lateinit var loginViewModel: LoginViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
 
         val username = findViewById<EditText>(R.id.tel)
-
+        val textView5 = findViewById<EditText>(R.id.textView5)
 
         //val reg = "^(\\+91[\\-\\s]?)?[0]?(91)?[789]\\d{9}\$"
         //var pattern: Pattern = Pattern.compile(reg)
         //fun CharSequence.isPhoneNumber() : Boolean = pattern.matcher(this).find()
 
-
         // TODO : send tel to generate password, and wait while user input password in to passText
+
+        val queue = Volley.newRequestQueue(this)
+        val url = "https://reqres.in/api/login"
+
+        val req = object : JsonObjectRequest(Request.Method.POST, url, null,
+            Response.Listener {
+                Toast.makeText(this,"My_token=${it.getString("token")}",Toast.LENGTH_LONG).show()
+            },
+            Response.ErrorListener {
+
+                Toast.makeText(this,"Error=${it.message}",Toast.LENGTH_LONG).show()
+
+            }
+        ) {
+            override fun getBody(): ByteArray {
+                val my_post_string="{\n" +
+                        "    \"email\": \"eve.holt@reqres.in\",\n" +
+                        "    \"password\": \"cityslicka\"\n" +
+                        "}"
+                return my_post_string.toByteArray()
+            }
+
+        }
+        // Add the request to the RequestQueue.
+                queue.add(req)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         //val password = findViewById<EditText>(R.id.password)
