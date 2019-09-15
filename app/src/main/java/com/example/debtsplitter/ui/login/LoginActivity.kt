@@ -11,10 +11,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
@@ -42,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val username = findViewById<EditText>(R.id.tel)
-        //val textView5 = findViewById<EditText>(R.id.textView5)
+
 
         //val reg = "^(\\+91[\\-\\s]?)?[0]?(91)?[789]\\d{9}\$"
         //var pattern: Pattern = Pattern.compile(reg)
@@ -116,8 +113,13 @@ class LoginActivity : AppCompatActivity() {
 
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
-                requestFun(username.text.toString())
-                Thread.sleep(20_000)
+
+                getUser(username.text.toString())
+                //Thread.sleep(20_000)
+
+                requestFunPost(username.text.toString())
+                //Thread.sleep(20_000)
+
                 loginViewModel.login2(username.text.toString())
             }
         }
@@ -125,29 +127,86 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun requestFun(username_ : String) {
+    private fun getUser(username_ : String) {
+        // Instantiate the RequestQueue.
+        val textView5 = findViewById<TextView>(R.id.textViewX)
+        val queue = Volley.newRequestQueue(this)
+        var url = "http://82.146.39.239:8000/users/send_verification_code/?username="
+        url += username_
+
+        /*
+        val stringRequest = object : JsonObjectRequest(Request.Method.GET, url, null,
+            Response.Listener<JSONObject> { response ->
+                // Display the first 500 characters of the response string.
+                textView5!!.text = "Response is: ${response.getJSONObject("Name")}"
+            },
+            Response.ErrorListener { textView5!!.text = "That didn't work!" })
+
+
+        // Request a string response from the provided URL.
+
+        val stringRequest = StringRequest(Request.Method.GET, url,
+        Response.Listener<String> { response ->
+            // Display the first 500 characters of the response string.
+            textView.text = "Response is: ${response.substring(0, 500)}"
+        },
+        Response.ErrorListener { textView.text = "That didn't work!" })
+
+
+// Add the request to the RequestQueue.
+
+
+         */
+
+        // Request a string response from the provided URL.
+
+        val stringReq = StringRequest(Request.Method.GET, url,
+            Response.Listener<String> { response ->
+
+               // var strResp = response.toString()
+               //val jsonObj: JSONObject = JSONObject(strResp)
+               // val jsonArray: JSONArray = jsonObj.getJSONArray("items")
+                //var str_user: String = ""
+                //for (i in 0 until jsonArray.length()) {
+                //    var jsonInner: JSONObject = jsonArray.getJSONObject(i)
+                //    str_user = str_user + "\n" + jsonInner.get("username")
+                //}
+                //textView5!!.text = "response : $str_user "
+
+                //Toast.makeText(this, "My_token=${response}", Toast.LENGTH_LONG).show()
+
+            },
+            Response.ErrorListener {
+                textView5!!.text = "That didn't work!"
+                //Toast.makeText(this, "Error=${it.message}", Toast.LENGTH_LONG).show()
+            })
+
+
+
+
+        queue.add(stringReq)
+    }
+
+    private fun requestFunPost(username_ : String) {
         val queue = Volley.newRequestQueue(this)
         val url = "http://82.146.39.239:8000/users/"
 
         val req = object : JsonObjectRequest(Request.Method.POST, url, null,
             Response.Listener {
-                Toast.makeText(this, "My_token=${it.getString("token")}", Toast.LENGTH_LONG)
-                    .show()
+                //Toast.makeText(this, "My_token=${it.getString("username")}", Toast.LENGTH_LONG).show()
             },
             Response.ErrorListener {
 
-                Toast.makeText(this, "Error=${it.message}", Toast.LENGTH_LONG).show()
+                //Toast.makeText(this, "Error!!=${it.message}", Toast.LENGTH_LONG).show()
 
             }
         ) {
             override fun getBody(): ByteArray {
                 val my_post_string = "{\n" +
                         "    \"username\":  \"" + username_ + "\",\n" +
-
                         "}"
                 return my_post_string.toByteArray()
             }
-
         }
         // Add the request to the RequestQueue.
         queue.add(req)
