@@ -1,18 +1,16 @@
 package com.example.debtsplitter
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import org.json.JSONObject
-import java.time.format.DateTimeFormatter
 
 class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
@@ -45,8 +43,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         val queue = Volley.newRequestQueue(this)
         val stringRequest = object : JsonObjectRequest(
             Method.GET, fnsUrl, null,
-            Response.Listener { response -> Log.i("QRSCAN",response.toString(4))
-            },
+            Response.Listener { response ->  successResponseHandler(response) },
             Response.ErrorListener { response -> Log.e("QRSCAN", response.toString()) }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -65,5 +62,12 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
         // If you would like to resume scanning, call this method below:
         //mScannerView.resumeCameraPreview(this);
+    }
+
+    fun successResponseHandler(response: JSONObject) {
+        Log.i("QRSCAN",response.toString(4))
+        val intent = Intent(this, ReceiptActivity::class.java)
+        intent.putExtra("check_data", response["document"]["receipt"]["items"].toString())
+        startActivity(intent)
     }
 }
