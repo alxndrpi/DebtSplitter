@@ -11,7 +11,6 @@ import com.android.volley.toolbox.Volley
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import org.json.JSONObject
-import java.io.Serializable
 
 class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 

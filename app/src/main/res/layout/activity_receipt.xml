@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/receipt_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -46,7 +46,7 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button"
-                app:layout_constraintStart_toEndOf="@+id/imageButton3"
+                app:layout_constraintStart_toEndOf="@+id/receipt_cancel"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
@@ -88,15 +88,6 @@
         app:layout_constraintStart_toEndOf="@+id/position_label"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="266dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
@@ -107,6 +98,24 @@
         android:text="Name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/check_name" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+
+        <LinearLayout
+            android:id="@+id/receipt_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

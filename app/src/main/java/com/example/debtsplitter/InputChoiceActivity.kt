@@ -4,14 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.content_input_choice.*
 import kotlinx.android.synthetic.main.navigation_layout.*
+import org.json.JSONArray
 import java.io.Serializable
 
 data class Item(
     val name: String,
     val price: Int,
-    val count: Int
+    val quantity: Int
 )
 
 class InputChoiceActivity : AppCompatActivity() {
@@ -24,9 +26,10 @@ class InputChoiceActivity : AppCompatActivity() {
         bottomNavigation.setOnNavigationItemSelectedListener(::navigationListener)
 
         manualInputButton.setOnClickListener {
-            val data: List<Item> = listOf(Item("test", 2, 1), Item("tes", 2, 1))
+
+            var jsonString = Gson().toJson(listOf(Item("test", 2, 1), Item("tes", 2, 1)))
             val intent = Intent(this, ReceiptActivity::class.java)
-            intent.putExtra("check_data", data as Serializable)
+            intent.putExtra("check_data", jsonString)
             startActivity(intent)
         }
 
