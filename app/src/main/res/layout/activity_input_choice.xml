@@ -9,5 +9,4 @@
 
     <include layout="@layout/content_input_choice" />
 
-    <include layout="@layout/navigation_layout" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.content_input_choice.*
-import kotlinx.android.synthetic.main.navigation_layout.*
 import org.json.JSONArray
 import java.io.Serializable
 
@@ -22,8 +21,6 @@ class InputChoiceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_input_choice)
 
-        val bottomNavigation: BottomNavigationView = navigationView
-        bottomNavigation.setOnNavigationItemSelectedListener(::navigationListener)
 
         manualInputButton.setOnClickListener {
 

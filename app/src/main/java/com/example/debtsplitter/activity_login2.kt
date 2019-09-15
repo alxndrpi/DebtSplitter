@@ -98,12 +98,14 @@ class Activity_login2 : AppCompatActivity() {
             login.setOnClickListener {
                 loading.visibility = View.VISIBLE
                 loginViewModel.login(password.text.toString())
+
+
             }
         }
     }
 
     private fun openInputActivity() {
-        val intent = Intent(this, Activity_login2::class.java)
+        val intent = Intent(this, PartyActivity::class.java)
 
         startActivity(intent)
     }
