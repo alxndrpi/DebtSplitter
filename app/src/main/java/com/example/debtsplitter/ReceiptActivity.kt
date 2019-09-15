@@ -10,7 +10,9 @@ class ReceiptActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_receipt)
 
-        val check_data = getIntent().getStringExtra("check_data")
-        Log.d("AASDASDASDASD", check_data.toString())
+        val check_data = getIntent().getStringExtra("check_data") as List<Item>
+        for (item: Item in check_data) {
+            Log.d("AASDASDASDASD", item.name)
+        }
     }
 }
