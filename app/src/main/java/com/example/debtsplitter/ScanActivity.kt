@@ -11,6 +11,7 @@ import com.android.volley.toolbox.Volley
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
 import org.json.JSONObject
+import java.io.Serializable
 
 class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
@@ -67,7 +68,8 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     fun successResponseHandler(response: JSONObject) {
         Log.i("QRSCAN",response.toString(4))
         val intent = Intent(this, ReceiptActivity::class.java)
-        intent.putExtra("check_data", response["document"]["receipt"]["items"].toString())
+        val receiptItems = response.getJSONObject("document").getJSONObject("receipt").getJSONArray("items")
+        intent.putExtra("check_data", receiptItems.toString())
         startActivity(intent)
     }
 }
